@@ -1,1 +1,1 @@
-Cloud computing assigment one submitted by Rohit Mohanty (rm6201) and Mayank Sharma (ms14662)
+Cloud computing assigment 1 submitted by Rohit Mohanty (rm6201) and Mayank Sharma (ms14662)

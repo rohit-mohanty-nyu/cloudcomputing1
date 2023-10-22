@@ -12,8 +12,8 @@ def lambda_handler(event, context):
     queue_url = "https://sqs.us-east-1.amazonaws.com/068392994093/foodqueue"
 
    
-    access_key  = "AKIAQ73EKIUW3L32SQEO"
-    secret_key  = "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"
+    access_key  = ""
+    secret_key  = ""
     host        = "search-cloudcomputingrm-lfzlzytfvvgq6enonduerfnc6u.us-east-1.es.amazonaws.com"
     region      = "us-east-1"
     service     = "es"

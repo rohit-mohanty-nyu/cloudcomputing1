@@ -23,16 +23,16 @@ from time import sleep
 from opensearchpy import OpenSearch, RequestsHttpConnection
 from requests_aws4auth import AWS4Auth
 
-aws_access_key_id       = "AKIAQ73EKIUW3L32SQEO"
-aws_secret_access_key   = "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"
+aws_access_key_id       = ""
+aws_secret_access_key   = ""
 region                  = "us-east-1"
 service                 = "es"
 host                    = "search-cloudcomputingrm-lfzlzytfvvgq6enonduerfnc6u.us-east-1.es.amazonaws.com"
 
 client = boto3.resource (
                             service_name            = "dynamodb",
-                            aws_access_key_id       = "AKIAQ73EKIUW3L32SQEO",
-                            aws_secret_access_key   = "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",
+                            aws_access_key_id       = "",
+                            aws_secret_access_key   = "",
                             region_name             = "us-east-1",
                         )
 

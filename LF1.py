@@ -8,8 +8,8 @@ import re
 def sqsEntry(city_name, cuisine, people, time, number):
     
     regionName  = "us-east-1"
-    access_key  = "AKIAQ73EKIUW3L32SQEO"
-    api_key     = "MwhKQJhEnNPecxwACTwUZCVbvbPUHOH1fabGkmZQ"
+    access_key  = ""
+    api_key     = ""
     queue_url   = "https://sqs.us-east-1.amazonaws.com/068392994093/foodqueue"
 
     sqs = boto3.client (

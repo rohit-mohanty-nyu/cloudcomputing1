@@ -138,12 +138,19 @@ Hope you have a great time!
         Message= finalMessage,
     )
 
+    sns = boto3.client("sns")
+    sns.publish(
+        TopicArn=sns_topic,
+        Message=finalMessage
+    )
+    
     # Delete the message from the queue
     receipt_handle = message['ReceiptHandle']
     sqs.delete_message(
         QueueUrl = queue_url,
         ReceiptHandle = receipt_handle
     )
+    
 
     return {
         'statusCode': 200,

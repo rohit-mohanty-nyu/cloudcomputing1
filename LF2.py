@@ -6,6 +6,7 @@ from opensearchpy import OpenSearch, RequestsHttpConnection
 from requests_aws4auth import AWS4Auth
 
 def lambda_handler(event, context):
+    sns_topic='arn:aws:sns:us-east-1:068392994093:foodnotify'
     sns = boto3.client("sns")
     sqs = boto3.client("sqs")
     dynamodb = boto3.resource("dynamodb")
@@ -50,13 +51,31 @@ def lambda_handler(event, context):
     )
 
     
-    message         = resp['Messages'][0]
-    cuisine         = message['MessageAttributes'].get('Cuisine').get('StringValue')
-    time            = message['MessageAttributes'].get('Time').get('StringValue')
+#    message         = resp['Messages'][0]
+ #   cuisine         = message['MessageAttributes'].get('Cuisine').get('StringValue')
+ #   time            = message['MessageAttributes'].get('Time').get('StringValue')
     # date          = message['MessageAttributes'].get('Date').get('StringValue')
-    number          = message['MessageAttributes'].get('Number').get('StringValue')
-    modifiedNumber  = "+1{}".format(number)
-    print(message['MessageAttributes'])
+  #  number          = message['MessageAttributes'].get('Number').get('StringValue')
+  #  modifiedNumber  = "+1{}".format(number)
+  #  print(message['MessageAttributes'])
+
+if 'Messages' not in resp:
+        # Handle the case when there are no messages in the queue
+        return {
+            'statusCode': 200,
+            'body': 'No messages in the queue'
+        }
+    
+    message = resp['Messages'][0]
+    if 'MessageAttributes' in message:
+        cuisine = message['MessageAttributes'].get('Cuisine', {}).get('StringValue')
+        time = message['MessageAttributes'].get('Time', {}).get('StringValue')
+        number = message['MessageAttributes'].get('Number', {}).get('StringValue')
+    else:
+        # Handle the case when 'MessageAttributes' is missing in the message
+        cuisine = 'Unknown Cuisine'
+        time = 'Unknown Time'
+        number = 'Unknown Number'
 
     # Hit OpenSearch index clusters
     result = openSearch.search (
